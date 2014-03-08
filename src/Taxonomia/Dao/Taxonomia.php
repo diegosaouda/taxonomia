@@ -6,10 +6,10 @@ use Doctrine\DBAL\Connection;
 
 class Taxonomia
 {
-    
+
     /** @var Connection */
     private $connection;
-    
+
     /**
      * @param Connection $connection
      */
@@ -17,10 +17,10 @@ class Taxonomia
     {
         $this->connection = $connection;
     }
-    
+
     /**
      * Busca por código
-     * @param string $code Código de taxonomia
+     * @param  string $code Código de taxonomia
      * @return array|bool Valor encontrado|false para não encontrado
      */
     public function buscaPorCodigo($code)
@@ -33,15 +33,16 @@ class Taxonomia
             ->execute()
             ->fetch();
     }
-    
+
     /**
      * Busca por descrição
-     * @param string $descricao Texto usado para busca
+     * @param  string     $descricao Texto usado para busca
      * @return array|bool Valor encontrado|false para não encontrado
      */
     public function buscaPorDescricao($descricao)
     {
         $like = '%'.strtolower($descricao).'%';
+
         return $this->connection->createQueryBuilder()
             ->select('*')
             ->from('tb_taxonomia', '')
@@ -52,7 +53,4 @@ class Taxonomia
             ->execute()
             ->fetchAll();
     }
-    
-    
-    
 }

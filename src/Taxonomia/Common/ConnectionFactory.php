@@ -7,7 +7,7 @@ use Doctrine\DBAL\DriverManager;
 
 class ConnectionFactory
 {
-    
+
     /**
      * @return Doctrine\DBAL\Connection
      */
@@ -15,7 +15,7 @@ class ConnectionFactory
     {
         $config = new Configuration();
         $conn = DriverManager::getConnection(include('config/doctrine.php'), $config);
+
         return $conn;
     }
-    
 }
