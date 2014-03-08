@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="Taxonomia">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+        <title>Taxonomia</title>
+        <link rel="stylesheet" href="vendor/bootstrap-3.1.1-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="vendor/bootstrap-3.1.1-dist/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="vendor/jumbotron-narrow.css">
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="header">
+                <ul class="nav nav-pills pull-right">
+                    <li><a ng-href="#/code">traduzir</a></li>
+                    <li><a ng-href="#/list">lista/nova</a></li>
+                </ul>
+                <h3 class="text-muted">Taxonomia</h3>
+            </div>
+            
+            <ng-view></ng-view>
+        </div>
+
+        <script src="vendor/angular-1.2.9/angular.min.js"></script>
+        <script src="vendor/angular-1.2.9/angular-route.min.js"></script>
+        <script src="vendor/angular-1.2.9/angular-resource.min.js"></script>
+        <script src="app/main.js"></script>
+        <script src="app/controller/CodeController.js"></script>
+        <script src="app/controller/ListController.js"></script>
+    </body>
+</html>

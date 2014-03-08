@@ -1,0 +1,24 @@
+{
+    "name": "taxonomia/help",
+    "description": "Ajuda na manutencao de taxonomia",
+    "autoload": {
+        "psr-0": { "Taxonomia\\": "src/" }
+    },
+    "require": {
+        "slimcontroller/slimcontroller": "*",
+        "slim/slim": "2.*",
+	"monolog/monolog": "1.*",
+        "slim/slim": "2.*",
+        "slim/views": "0.*",
+        "doctrine/dbal": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "authors": [
+        {
+            "name": "Diego Saouda",
+            "email": "diegosaouda@gmail.com"
+        }
+    ]
+}

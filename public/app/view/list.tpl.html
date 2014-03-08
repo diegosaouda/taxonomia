@@ -1,0 +1,26 @@
+<div class="jumbotron">
+    <h1>Informe o texto</h1>
+    <p class="lead">
+        <input type="text" style="font-size: 40px;" ng-model="buscar" ng-change="getLista(buscar)" /></p>
+    
+    <div ng-if="taxonomias.length === 0 && buscar!==''">
+        <br /><br />
+        <input type="radio" name="tipo" value="E" ng-model="tipoTaxonomia" /> Error
+        &nbsp;&nbsp;&nbsp;
+        <input type="radio" name="tipo" value="I" ng-model="tipoTaxonomia" /> Info
+        &nbsp;&nbsp;&nbsp;
+        <input type="radio" name="tipo" value="L" ng-model="tipoTaxonomia" /> Label
+        <br /><br />
+        
+        <button type="submit" class="btn btn-primary" ng-click="inserirTaxonomia(tipoTaxonomia)">Inserir Nova Taxonomia</button>
+    </div>
+</div>
+
+<div ng-if="taxonomias.length > 0 && buscar !==''">
+    
+    <h2>Valores encontrados</h2>
+    
+    <ul class="list-unstyled">
+        <li style="margin: 10px 0px 10px 0px;" ng-repeat="taxonomia in taxonomias">{{taxonomia.nm_taxonomia}} - {{taxonomia.nm_descricao}}</li>
+    </ul>
+</div>

@@ -1,0 +1,6 @@
+<?php
+
+return array(
+    '/code/:id' => '\\Taxonomia\\Controller\\Taxonomia:code',
+    '/busca/:descricao' => '\\Taxonomia\\Controller\\Taxonomia:busca',
+);
