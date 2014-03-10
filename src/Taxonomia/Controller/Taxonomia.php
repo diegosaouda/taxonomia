@@ -22,7 +22,8 @@ class Taxonomia extends SlimController
     public function __construct(Slim $app)
     {
         parent::__construct($app);
-        $this->connection = (new ConnectionFactory())->getConnection();
+        $connectionFactory = new ConnectionFactory();
+        $this->connection = $connectionFactory->getConnection();
         $this->taxonomiaDao = new TaxonomiaDao($this->connection);
     }
 
@@ -36,11 +37,37 @@ class Taxonomia extends SlimController
     }
 
     /**
-     * @param string $id
+     * @param string $descricao
+     * @param string $tipo
      */
-    public function buscaAction($descricao)
+    public function buscaAction($descricao, $tipo)
     {
-        $taxonomia = $this->taxonomiaDao->buscaPorDescricao($descricao);
+        $taxonomia = $this->taxonomiaDao->buscaPorDescricaoTipo($descricao, $tipo);
         $this->app->response->body(json_encode($taxonomia));
+    }
+    
+    /**
+     * @param string $descricao
+     * @param string $tipo
+     */
+    public function inserirAction()
+    {
+        $data = $this->getRequestJson();
+        
+        $this->connection->beginTransaction();
+        $result = $this->taxonomiaDao->insertNextTaxonomia($data);
+        $this->connection->commit();
+        
+        $this->app->response->body(json_encode($result));
+    }
+    
+    /**
+     * Get post Json
+     * @return array
+     */
+    private function getRequestJson()
+    {
+        $requestJson = file_get_contents('php://input');
+        return (array) json_decode($requestJson);
     }
 }

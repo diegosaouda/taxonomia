@@ -1,26 +1,60 @@
 <div class="jumbotron">
-    <h1>Informe o texto</h1>
-    <p class="lead">
-        <input type="text" style="font-size: 40px;" ng-model="buscar" ng-change="getLista(buscar)" /></p>
-    
-    <div ng-if="taxonomias.length === 0 && buscar!==''">
-        <br /><br />
-        <input type="radio" name="tipo" value="E" ng-model="tipoTaxonomia" /> Error
-        &nbsp;&nbsp;&nbsp;
-        <input type="radio" name="tipo" value="I" ng-model="tipoTaxonomia" /> Info
-        &nbsp;&nbsp;&nbsp;
-        <input type="radio" name="tipo" value="L" ng-model="tipoTaxonomia" /> Label
-        <br /><br />
-        
-        <button type="submit" class="btn btn-primary" ng-click="inserirTaxonomia(tipoTaxonomia)">Inserir Nova Taxonomia</button>
-    </div>
+    	
+	<form role="form">
+		<div class="form-group row">
+			
+			<div class="col-xs-8">
+				<input type="text" ng-model="buscar" ng-change="getLista(buscar, tipoTaxonomia)"
+				   class="form-control input-lg" placeholder="Informe o Texto">
+			</div>
+		
+			<div class="col-xs-4">
+				<select class="form-control input-lg" ng-model="tipoTaxonomia" ng-change="getLista(buscar, tipoTaxonomia)">
+					<option value="todas">Todas</option>
+					<option value="E">Error</option>
+					<option value="I">Info</option>
+					<option value="L">Label</option>
+				</select>
+			</div>
+			
+		</div>
+		
+		
+		<div class="form-group row" ng-if="taxonomias.length === 0 && buscar!=='' && !resultInsert">
+			<div class="col-xs-12">
+				<input type="text" ng-model="tela"
+				   class="form-control input-lg" placeholder="Informe o nome da tela">
+				
+				<br /><br />
+				<button type="submit" class="btn btn-primary btn-lg"
+					ng-disabled="!tela" 
+					ng-click="inserirTaxonomia(buscar, tipoTaxonomia, tela)">Inserir Nova Taxonomia</button>
+			</div>
+		</div>
+		
+	</form>
+	
+</div>
+
+<div ng-if="resultInsert">
+	<h2>Usos .phtml / .php</h2>
+	
+<pre>.phtml
+	&#60;?php //{{resultInsert.nm_descricao}} &#63;&#62;
+	&#60;?php echo $this->mytranslator('{{resultInsert.nm_taxonomia}}') &#63;&#62;
+
+.php
+	//{{resultInsert.nm_descricao}}
+	$mytranslator->translate('{{resultInsert.nm_taxonomia}}')</pre>
+	
+	
 </div>
 
 <div ng-if="taxonomias.length > 0 && buscar !==''">
-    
     <h2>Valores encontrados</h2>
-    
     <ul class="list-unstyled">
-        <li style="margin: 10px 0px 10px 0px;" ng-repeat="taxonomia in taxonomias">{{taxonomia.nm_taxonomia}} - {{taxonomia.nm_descricao}}</li>
+        <li style="margin: 10px 0px 10px 0px;" ng-repeat="taxonomia in taxonomias">
+			{{taxonomia.nm_taxonomia}} - {{taxonomia.nm_descricao}}
+		</li>
     </ul>
 </div>

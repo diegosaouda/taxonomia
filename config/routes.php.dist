@@ -2,5 +2,6 @@
 
 return array(
     '/code/:id' => '\\Taxonomia\\Controller\\Taxonomia:code',
-    '/busca/:descricao' => '\\Taxonomia\\Controller\\Taxonomia:busca',
+    '/busca/:descricao/:tipo' => '\\Taxonomia\\Controller\\Taxonomia:busca',
+    '/inserir' => '\\Taxonomia\\Controller\\Taxonomia:inserir',
 );
